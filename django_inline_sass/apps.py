@@ -7,7 +7,7 @@ class Config(AppConfig):
     Config for django_inline_sass application.
     """
     name = 'django_inline_sass'
-    label = 'django-inline-sass'
+    label = 'django_inline_sass'
     verbose_name = _('Django Inline SASS')
 
     def ready(self):
