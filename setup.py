@@ -15,7 +15,7 @@ def find_packages(path, prefix=""):
 setup(
   name = 'django-inline-sass',
   packages = list(find_packages(django_inline_sass.__path__, django_inline_sass.__name__)),
-  version = '0.1.1',
+  version = '0.1.2',
   description = 'Django Inline SASS',
   author = 'Matt Roberts',
   author_email = 'contact@maleero.com',
