@@ -21,7 +21,7 @@ class SASSNode(template.Node):
 
     def render(self, context):
         import sass as libsass
-        cache_enabled = getattr(settings, 'DJANGO_INLINE_SASS_CACHE', False)
+        cache_enabled = getattr(settings, 'DJANGO_INLINE_SASS_CACHE_ENABLED', False)
         sass_string = self.nodelist.render(context)
         cache_key = 'django_inline_sass_' + hashlib.md5(sass_string.encode('utf-8')).hexdigest()
         dir = getattr(settings, 'DJANGO_INLINE_SASS_DIR', 'sass')
@@ -30,7 +30,7 @@ class SASSNode(template.Node):
         if not css:
             css = libsass.compile(
                 string=sass_string,
-                output_style=getattr(settings, 'DEBUG', False) and 'compressed' or 'nested',
+                output_style=getattr(settings, 'DEBUG', False) and 'nested' or 'compressed',
                 include_paths=[str(path) for path in get_app_template_dirs(dir)]
             )
             if cache_enabled:
