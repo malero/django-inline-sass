@@ -23,7 +23,7 @@ class SASSNode(template.Node):
         import sass as libsass
         cache_enabled = getattr(settings, 'DJANGO_INLINE_SASS_CACHE_ENABLED', False)
         sass_string = self.nodelist.render(context)
-        cache_key = 'django_inline_sass_' + hashlib.md5(sass_string.encode('utf-8')).hexdigest()
+        cache_key = cache_enabled and 'django_inline_sass_' + hashlib.md5(sass_string.encode('utf-8')).hexdigest() or None
         dir = getattr(settings, 'DJANGO_INLINE_SASS_DIR', 'sass')
         css = cache_enabled and cache.get(cache_key) or None
 
